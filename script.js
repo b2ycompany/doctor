@@ -4,12 +4,12 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "SUA_API_KEY",
-    authDomain: "SEU_AUTH_DOMAIN",
-    projectId: "SEU_PROJECT_ID",
-    storageBucket: "SEU_STORAGE_BUCKET",
-    messagingSenderId: "SEU_MESSAGING_SENDER_ID",
-    appId: "SEU_APP_ID"
+  apiKey: "AIzaSyA-RbbSyD0WkPdWnMu6xRJbg8PMH1hNiJ4",
+  authDomain: "doctor-1da43.firebaseapp.com",
+  projectId: "doctor-1da43",
+  storageBucket: "doctor-1da43.firebasestorage.app",
+  messagingSenderId: "1033891757853",
+  appId: "1:1033891757853:web:0df421cdf20ced3f01ebf4"
 };
 
 const app = initializeApp(firebaseConfig);
