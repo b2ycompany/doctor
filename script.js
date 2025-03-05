@@ -1,8 +1,3 @@
-// Importando os módulos necessários
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js";
-
 // Configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyA-RbbSyD0WkPdWnMu6xRJbg8PMH1hNiJ4",
@@ -14,9 +9,9 @@ const firebaseConfig = {
 };
 
 // Inicializa o Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 
 // Alterna entre login e cadastro
 function toggleAuth() {
@@ -44,45 +39,40 @@ function toggleAuth() {
 }
 
 // Função de cadastro
-async function register() {
+function register() {
     const email = document.getElementById("register-email").value;
     const password = document.getElementById("register-password").value;
 
-    try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        alert("Cadastro realizado com sucesso!");
-    } catch (error) {
-        alert("Erro: " + error.message);
-    }
+    auth.createUserWithEmailAndPassword(email, password)
+        .then(() => alert("Cadastro realizado com sucesso!"))
+        .catch(error => alert("Erro: " + error.message));
 }
 
 // Função de login
-async function login() {
+function login() {
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
 
-    try {
-        await signInWithEmailAndPassword(auth, email, password);
-        document.getElementById("auth-section").classList.add("hidden");
-        document.getElementById("welcome-section").classList.remove("hidden");
-    } catch (error) {
-        alert("Erro: " + error.message);
-    }
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+            document.getElementById("auth-section").classList.add("hidden");
+            document.getElementById("welcome-section").classList.remove("hidden");
+        })
+        .catch(error => alert("Erro: " + error.message));
 }
 
 // Função de logout
-async function logout() {
-    try {
-        await signOut(auth);
-        document.getElementById("welcome-section").classList.add("hidden");
-        document.getElementById("auth-section").classList.remove("hidden");
-    } catch (error) {
-        alert("Erro ao sair: " + error.message);
-    }
+function logout() {
+    auth.signOut()
+        .then(() => {
+            document.getElementById("welcome-section").classList.add("hidden");
+            document.getElementById("auth-section").classList.remove("hidden");
+        })
+        .catch(error => alert("Erro ao sair: " + error.message));
 }
 
 // Observa o estado de autenticação
-onAuthStateChanged(auth, (user) => {
+auth.onAuthStateChanged(user => {
     if (user) {
         document.getElementById("auth-section").classList.add("hidden");
         document.getElementById("welcome-section").classList.remove("hidden");
