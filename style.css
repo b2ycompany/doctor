@@ -1,89 +1,59 @@
-/* Estilos básicos para o Sistema Plantão Médico */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f3f4f6;
-  color: #333;
-  margin: 0;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-h1 {
-  text-align: center;
-  color: #2563eb;
-}
-
-h2 {
-  text-align: center;
-  color: #333;
+h1, h2 {
+    color: #2563eb;
 }
 
 button {
-  background-color: #2563eb;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
-  margin-bottom: 10px;
+    background-color: #2563eb;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
 }
 
 button:hover {
-  background-color: #1d4ed8;
+    background-color: #1d4ed8;
 }
 
 input {
-  border: 1px solid #ddd;
-  padding: 8px;
-  border-radius: 5px;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.hidden {
-  display: none;
-}
-
-.text-center {
-  text-align: center;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
 }
 
 .link {
-  color: #2563eb;
-  text-decoration: none;
-  display: block;
-  text-align: center;
-  margin-top: 10px;
+    color: #2563eb;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
 }
 
 .link:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
-.alert {
-  padding: 10px;
-  background-color: #f87171;
-  color: #fff;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.success {
-  padding: 10px;
-  background-color: #34d399;
-  color: #fff;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  text-align: center;
+.hidden {
+    display: none;
 }
