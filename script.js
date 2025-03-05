@@ -18,7 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const email = document.getElementById("register-email").value;
         const password = document.getElementById("register-password").value;
         auth.createUserWithEmailAndPassword(email, password)
-            .then(() => alert("Cadastro realizado com sucesso!"))
+            .then(() => {
+                alert("Cadastro realizado com sucesso!");
+                toggleAuth();  // Volta para tela de login após cadastro
+            })
             .catch(error => alert("Erro: " + error.message));
     }
 
@@ -30,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(() => {
                 document.getElementById("auth-section").classList.add("hidden");
                 document.getElementById("welcome-section").classList.remove("hidden");
+                alert("Login realizado com sucesso!");
             })
             .catch(error => alert("Erro: " + error.message));
     }
@@ -39,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         auth.signOut().then(() => {
             document.getElementById("auth-section").classList.remove("hidden");
             document.getElementById("welcome-section").classList.add("hidden");
+            alert("Você saiu da conta.");
         });
     }
 
@@ -55,9 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("login-link").classList.toggle("hidden", !isRegistering);
     }
 
+    // Torna a função toggleAuth global para ser acessada no HTML
+    window.toggleAuth = toggleAuth;
+
     // Adiciona eventos aos botões
     document.getElementById("register-btn").addEventListener("click", register);
     document.getElementById("login-btn").addEventListener("click", login);
     document.getElementById("logout-btn").addEventListener("click", logout);
 });
-
