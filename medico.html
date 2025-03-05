@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro do Médico - Sistema Plantão Médico</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="medico.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h2>Cadastro do Médico</h2>
+    <form id="medico-form">
+        <input type="text" id="nome" placeholder="Nome Completo" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="especialidade" placeholder="Especialidade" required>
+        <input type="text" id="regioes" placeholder="Regiões (separadas por vírgula)" required>
+        <input type="number" id="valor-hora" placeholder="Valor Hora (R$)" required>
+
+        <label>Dias Disponíveis:</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" value="Segunda" class="dias"> Segunda</label>
+            <label><input type="checkbox" value="Terça" class="dias"> Terça</label>
+            <label><input type="checkbox" value="Quarta" class="dias"> Quarta</label>
+            <label><input type="checkbox" value="Quinta" class="dias"> Quinta</label>
+            <label><input type="checkbox" value="Sexta" class="dias"> Sexta</label>
+            <label><input type="checkbox" value="Sábado" class="dias"> Sábado</label>
+            <label><input type="checkbox" value="Domingo" class="dias"> Domingo</label>
+        </div>
+
+        <label>Horário Disponível:</label>
+        <input type="time" id="hora-inicio" required>
+        <input type="time" id="hora-fim" required>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
+</body>
+
+</html>
