@@ -1,27 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema Plantão Médico</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
-<script defer src="script.js"></script>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Plantão Médico</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-storage-compat.js"></script>
+    <!-- Script principal -->
+    <script defer src="script.js"></script>
 </head>
+
 <body>
+
 <div class="container">
-<h1>Sistema Plantão Médico</h1>
-<div id="auth-section">
-<h2>Entrar ou Cadastrar</h2>
-<input id="email" type="email" placeholder="Email">
-<input id="password" type="password" placeholder="Senha">
-<button onclick="login()">Entrar</button>
-<button onclick="register()">Cadastrar</button>
+    <h1>Sistema Plantão Médico</h1>
+
+    <!-- Seção de autenticação -->
+    <div id="auth-section">
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Senha">
+        <button id="login-btn">Entrar</button>
+        <a href="#" class="link" onclick="toggleAuth()">Não tem conta? Cadastre-se</a>
+
+        <h2 class="hidden" id="register-title">Cadastro</h2>
+        <input type="email" id="register-email" class="hidden" placeholder="Email">
+        <input type="password" id="register-password" class="hidden" placeholder="Senha">
+        <button id="register-btn" class="hidden">Cadastrar</button>
+        <a href="#" class="link hidden" id="login-link" onclick="toggleAuth()">Já tem conta? Faça login</a>
+    </div>
+
+    <!-- Seção pós-login -->
+    <div id="welcome-section" class="hidden">
+        <h2>Bem-vindo!</h2>
+        <button id="logout-btn">Sair</button>
+    </div>
 </div>
-</div>
+
 </body>
 </html>
