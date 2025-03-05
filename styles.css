@@ -1,0 +1,41 @@
+// styles.css
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1a1a1a;
+    color: white;
+}
+.container {
+    display: flex;
+    justify-content: center;
+}
+.card {
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+}
+.input-field {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+}
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+.toggle-text {
+    margin-top: 10px;
+    cursor: pointer;
+}
+.error-message {
+    color: red;
+}
