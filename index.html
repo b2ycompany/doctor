@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Médica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 id="form-title">Login</h2>
+            <p id="error-message" class="error-message"></p>
+            <input type="text" id="name" class="input-field" placeholder="Nome" style="display: none;">
+            <input type="email" id="email" class="input-field" placeholder="Email">
+            <input type="password" id="password" class="input-field" placeholder="Senha">
+            <button id="auth-button" class="btn">Entrar</button>
+            <p class="toggle-text" id="toggle-form">Não tem uma conta? Cadastre-se</p>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
