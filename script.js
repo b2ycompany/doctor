@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         auth.createUserWithEmailAndPassword(email, password)
             .then(() => {
                 alert("Cadastro realizado com sucesso!");
-                toggleAuth();  // Volta para tela de login após cadastro
+                toggleAuth();
             })
             .catch(error => alert("Erro: " + error.message));
     }
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("login-link").classList.toggle("hidden", !isRegistering);
     }
 
-    // Torna a função toggleAuth global para ser acessada no HTML
+    // Torna a função toggleAuth global
     window.toggleAuth = toggleAuth;
 
     // Adiciona eventos aos botões
