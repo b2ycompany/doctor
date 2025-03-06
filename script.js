@@ -7,94 +7,75 @@ const firebaseConfig = {
     messagingSenderId: "1033891757853",
     appId: "1:1033891757853:web:0df421cdf20ced3f01ebf4"
 };
-
-// Inicializar Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-const storage = firebase.storage();
 
-// Elementos DOM
-const loginEmail = document.getElementById("login-email");
-const loginPassword = document.getElementById("login-password");
-const loginBtn = document.getElementById("login-btn");
-const registerEmail = document.getElementById("register-email");
-const registerPassword = document.getElementById("register-password");
-const registerBtn = document.getElementById("register-btn");
-const logoutBtn = document.getElementById("logout-btn");
-const authSection = document.getElementById("auth-section");
-const welcomeSection = document.getElementById("welcome-section");
+document.getElementById("login-btn").addEventListener("click", login);
+document.getElementById("register-btn").addEventListener("click", register);
+document.getElementById("logout-btn").addEventListener("click", logout);
+document.getElementById("user-type").addEventListener("change", toggleUserType);
 
-// Troca entre login e cadastro
-function toggleAuth() {
-    document.getElementById("login-title").classList.toggle("hidden");
-    document.getElementById("register-title").classList.toggle("hidden");
-    loginEmail.classList.toggle("hidden");
-    loginPassword.classList.toggle("hidden");
-    loginBtn.classList.toggle("hidden");
-    registerEmail.classList.toggle("hidden");
-    registerPassword.classList.toggle("hidden");
-    registerBtn.classList.toggle("hidden");
-    document.getElementById("login-link").classList.toggle("hidden");
+function login() {
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => window.location.href = "dashboard.html")
+        .catch(error => alert(error.message));
 }
 
-// Cadastro de usuário
-registerBtn.onclick = () => {
-    const email = registerEmail.value;
-    const password = registerPassword.value;
+function register() {
+    const email = document.getElementById("register-email").value;
+    const password = document.getElementById("register-password").value;
+    const userType = document.getElementById("user-type").value;
 
     auth.createUserWithEmailAndPassword(email, password)
-        .then(() => {
-            alert("Cadastro realizado com sucesso!");
-            toggleAuth();
+        .then(userCredential => {
+            const user = userCredential.user;
+            const userData = {
+                type: userType,
+                email: email
+            };
+
+            if (userType === "profissional") {
+                userData.name = document.getElementById("prof-name").value;
+                userData.crm = document.getElementById("prof-crm").value;
+                userData.endereco = document.getElementById("prof-endereco").value;
+                userData.especialidade = document.getElementById("prof-especialidade").value;
+                userData.valorHora = document.getElementById("prof-valor-hora").value;
+            } else if (userType === "empresa") {
+                userData.nomeEmpresa = document.getElementById("emp-nome").value;
+                userData.endereco = document.getElementById("emp-endereco").value;
+                userData.especialidade = document.getElementById("emp-especialidade").value;
+                userData.valorHora = document.getElementById("emp-valor-hora").value;
+            }
+
+            db.collection("users").doc(user.uid).set(userData)
+                .then(() => alert("Cadastro realizado com sucesso!"))
+                .catch(error => alert(error.message));
         })
-        .catch(error => alert("Erro no cadastro: " + error.message));
-};
-
-// Login de usuário
-loginBtn.onclick = () => {
-    const email = loginEmail.value;
-    const password = loginPassword.value;
-
-    auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-            mostrarSecaoBemVindo();
-        })
-        .catch(error => alert("Erro no login: " + error.message));
-};
-
-// Logout de usuário
-logoutBtn.onclick = () => {
-    auth.signOut().then(() => {
-        mostrarSecaoLogin();
-    });
-};
-
-// Mostrar seção de boas-vindas após login
-function mostrarSecaoBemVindo() {
-    const container = document.querySelector(".container");
-    if (container) {
-        container.classList.add("hidden");
-    }
-    authSection.classList.add("hidden");
-    welcomeSection.classList.remove("hidden");
+        .catch(error => alert(error.message));
 }
 
-// Mostrar seção de login após logout
-function mostrarSecaoLogin() {
-    const container = document.querySelector(".container");
-    if (container) {
-        container.classList.remove("hidden");
-    }
-    authSection.classList.remove("hidden");
-    welcomeSection.classList.add("hidden");
+function logout() {
+    auth.signOut().then(() => window.location.href = "index.html");
 }
 
-// Verificar autenticação ao carregar a página
-auth.onAuthStateChanged(user => {
-    if (user) {
-        mostrarSecaoBemVindo();
-    } else {
-        mostrarSecaoLogin();
-    }
-});
+function toggleAuth() {
+    document.getElementById("register-title").classList.toggle("hidden");
+    document.getElementById("register-email").classList.toggle("hidden");
+    document.getElementById("register-password").classList.toggle("hidden");
+    document.getElementById("register-btn").classList.toggle("hidden");
+    document.getElementById("login-link").classList.toggle("hidden");
+    document.getElementById("login-title").classList.toggle("hidden");
+    document.getElementById("login-email").classList.toggle("hidden");
+    document.getElementById("login-password").classList.toggle("hidden");
+    document.getElementById("login-btn").classList.toggle("hidden");
+    document.getElementById("user-type").classList.toggle("hidden");
+}
+
+function toggleUserType() {
+    const userType = document.getElementById("user-type").value;
+    document.getElementById("profissional-form").classList.toggle("hidden", userType !== "profissional");
+    document.getElementById("empresa-form").classList.toggle("hidden", userType !== "empresa");
+}
