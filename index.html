@@ -27,31 +27,10 @@
     <a href="#" onclick="toggleAuth()">Criar Conta</a>
 
     <h2 id="register-title" class="hidden">Cadastro</h2>
-    <select id="user-type" class="hidden">
-        <option value="" disabled selected>Sou...</option>
-        <option value="profissional">Profissional de Saúde</option>
+    <select id="tipo-usuario" class="hidden">
+        <option value="profissional">Profissional</option>
         <option value="empresa">Empresa</option>
     </select>
-
-    <div id="profissional-form" class="hidden">
-        <input type="text" id="prof-name" placeholder="Nome Completo">
-        <input type="text" id="prof-crm" placeholder="CRM">
-        <input type="text" id="prof-endereco" placeholder="Endereço">
-        <input type="text" id="prof-especialidade" placeholder="Especialidade">
-        <input type="text" id="prof-valor-hora" placeholder="Valor por Hora">
-        <label>Dias Disponíveis:</label>
-        <input type="date" id="prof-dias">
-        <label>Horários Disponíveis:</label>
-        <input type="time" id="prof-horarios">
-    </div>
-
-    <div id="empresa-form" class="hidden">
-        <input type="text" id="emp-nome" placeholder="Nome da Empresa">
-        <input type="text" id="emp-endereco" placeholder="Endereço">
-        <input type="text" id="emp-especialidade" placeholder="Especialidade Procurada">
-        <input type="text" id="emp-valor-hora" placeholder="Valor Hora Pago">
-    </div>
-
     <input type="email" id="register-email" placeholder="Email" class="hidden" required>
     <input type="password" id="register-password" placeholder="Senha" class="hidden" required>
     <button id="register-btn" class="hidden">Cadastrar</button>
