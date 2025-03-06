@@ -10,7 +10,18 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-document.getElementById("register-btn").addEventListener("click", () => {
+const loginBtn = document.getElementById("login-btn");
+const registerBtn = document.getElementById("register-btn");
+
+loginBtn?.addEventListener("click", () => {
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+
+    auth.signInWithEmailAndPassword(email, password)
+        .catch(error => alert(error.message));
+});
+
+registerBtn?.addEventListener("click", () => {
     const email = document.getElementById("register-email").value;
     const password = document.getElementById("register-password").value;
     const tipoUsuario = document.getElementById("tipo-usuario").value;
@@ -24,11 +35,16 @@ document.getElementById("register-btn").addEventListener("click", () => {
         .catch(error => alert(error.message));
 });
 
-auth.onAuthStateChanged((user) => {
-    if (user) {
-        db.collection("users").doc(user.uid).get().then((doc) => {
-            const tipo = doc.data().tipo;
-            window.location.href = tipo + ".html";
-        });
-    }
-});
+function toggleAuth() {
+    document.getElementById("login-title").classList.toggle("hidden");
+    document.getElementById("register-title").classList.toggle("hidden");
+    document.getElementById("login-email").classList.toggle("hidden");
+    document.getElementById("login-password").classList.toggle("hidden");
+    loginBtn.classList.toggle("hidden");
+
+    document.getElementById("register-email").classList.toggle("hidden");
+    document.getElementById("register-password").classList.toggle("hidden");
+    document.getElementById("tipo-usuario").classList.toggle("hidden");
+    registerBtn.classList.toggle("hidden");
+    document.getElementById("login-link").classList.toggle("hidden");
+}
