@@ -19,27 +19,26 @@
 
 <body>
 
-<div id="auth-section">
-    <h2 id="login-title">Login</h2>
-    <input type="email" id="login-email" placeholder="Email" required>
-    <input type="password" id="login-password" placeholder="Senha" required>
-    <button id="login-btn">Entrar</button>
-    <a href="#" onclick="toggleAuth()">Criar Conta</a>
+<div class="container">
+    <div class="card">
+        <h2 id="login-title">Login</h2>
+        <input type="email" id="login-email" placeholder="Email" required>
+        <input type="password" id="login-password" placeholder="Senha" required>
+        <button id="login-btn" class="btn">Entrar</button>
+        <a href="#" onclick="toggleAuth()">Criar Conta</a>
 
-    <h2 id="register-title" class="hidden">Cadastro</h2>
-    <select id="tipo-usuario" class="hidden">
-        <option value="profissional">Profissional</option>
-        <option value="empresa">Empresa</option>
-    </select>
-    <input type="email" id="register-email" placeholder="Email" class="hidden" required>
-    <input type="password" id="register-password" placeholder="Senha" class="hidden" required>
-    <button id="register-btn" class="hidden">Cadastrar</button>
-    <a href="#" onclick="toggleAuth()" class="hidden" id="login-link">Já tenho uma conta</a>
-</div>
+        <div class="divider"></div>
 
-<div id="welcome-section" class="hidden">
-    <h2>Bem-vindo!</h2>
-    <button id="logout-btn">Sair</button>
+        <h2 id="register-title" class="hidden">Cadastro</h2>
+        <select id="tipo-usuario" class="hidden">
+            <option value="profissional">Profissional</option>
+            <option value="empresa">Empresa</option>
+        </select>
+        <input type="email" id="register-email" placeholder="Email" class="hidden" required>
+        <input type="password" id="register-password" placeholder="Senha" class="hidden" required>
+        <button id="register-btn" class="btn hidden">Cadastrar</button>
+        <a href="#" onclick="toggleAuth()" class="hidden" id="login-link">Já tenho uma conta</a>
+    </div>
 </div>
 
 </body>
