@@ -8,64 +8,93 @@ const firebaseConfig = {
     appId: "1:1033891757853:web:0df421cdf20ced3f01ebf4"
 };
 
+// Inicializar Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
+const storage = firebase.storage();
 
 // Elementos DOM
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-const authBtn = document.getElementById("auth-btn");
-const toggleText = document.getElementById("toggle-text");
-const formTitle = document.getElementById("form-title");
-const welcomeSection = document.getElementById("welcome-section");
+const loginEmail = document.getElementById("login-email");
+const loginPassword = document.getElementById("login-password");
+const loginBtn = document.getElementById("login-btn");
+const registerEmail = document.getElementById("register-email");
+const registerPassword = document.getElementById("register-password");
+const registerBtn = document.getElementById("register-btn");
 const logoutBtn = document.getElementById("logout-btn");
+const authSection = document.getElementById("auth-section");
+const welcomeSection = document.getElementById("welcome-section");
 
-let isLogin = true; // Controla o modo login/cadastro
-
-// Alternar entre login e cadastro
+// Troca entre login e cadastro
 function toggleAuth() {
-    isLogin = !isLogin;
-    if (isLogin) {
-        formTitle.textContent = "Login";
-        authBtn.textContent = "Entrar";
-        toggleText.innerHTML = 'Não tem conta? <a href="#" onclick="toggleAuth()">Cadastre-se</a>';
-    } else {
-        formTitle.textContent = "Cadastro";
-        authBtn.textContent = "Cadastrar";
-        toggleText.innerHTML = 'Já tem conta? <a href="#" onclick="toggleAuth()">Entrar</a>';
-    }
+    document.getElementById("login-title").classList.toggle("hidden");
+    document.getElementById("register-title").classList.toggle("hidden");
+    loginEmail.classList.toggle("hidden");
+    loginPassword.classList.toggle("hidden");
+    loginBtn.classList.toggle("hidden");
+    registerEmail.classList.toggle("hidden");
+    registerPassword.classList.toggle("hidden");
+    registerBtn.classList.toggle("hidden");
+    document.getElementById("login-link").classList.toggle("hidden");
 }
 
-// Ação do botão de autenticação
-authBtn.onclick = () => {
-    const email = emailInput.value;
-    const password = passwordInput.value;
+// Cadastro de usuário
+registerBtn.onclick = () => {
+    const email = registerEmail.value;
+    const password = registerPassword.value;
 
-    if (isLogin) {
-        auth.signInWithEmailAndPassword(email, password)
-            .then(() => {
-                alert("Login realizado com sucesso!");
-                mostrarSecaoBemVindo();
-            })
-            .catch(error => alert("Erro: " + error.message));
-    } else {
-        auth.createUserWithEmailAndPassword(email, password)
-            .then(() => alert("Cadastro realizado com sucesso!"))
-            .catch(error => alert("Erro: " + error.message));
-    }
+    auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+            alert("Cadastro realizado com sucesso!");
+            toggleAuth();
+        })
+        .catch(error => alert("Erro no cadastro: " + error.message));
+};
+
+// Login de usuário
+loginBtn.onclick = () => {
+    const email = loginEmail.value;
+    const password = loginPassword.value;
+
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+            mostrarSecaoBemVindo();
+        })
+        .catch(error => alert("Erro no login: " + error.message));
+};
+
+// Logout de usuário
+logoutBtn.onclick = () => {
+    auth.signOut().then(() => {
+        mostrarSecaoLogin();
+    });
 };
 
 // Mostrar seção de boas-vindas após login
 function mostrarSecaoBemVindo() {
-    document.querySelector(".container").classList.add("hidden");
+    const container = document.querySelector(".container");
+    if (container) {
+        container.classList.add("hidden");
+    }
+    authSection.classList.add("hidden");
     welcomeSection.classList.remove("hidden");
 }
 
-// Logout
-logoutBtn.onclick = () => {
-    auth.signOut().then(() => {
-        document.querySelector(".container").classList.remove("hidden");
-        welcomeSection.classList.add("hidden");
-    });
-};
+// Mostrar seção de login após logout
+function mostrarSecaoLogin() {
+    const container = document.querySelector(".container");
+    if (container) {
+        container.classList.remove("hidden");
+    }
+    authSection.classList.remove("hidden");
+    welcomeSection.classList.add("hidden");
+}
+
+// Verificar autenticação ao carregar a página
+auth.onAuthStateChanged(user => {
+    if (user) {
+        mostrarSecaoBemVindo();
+    } else {
+        mostrarSecaoLogin();
+    }
+});
