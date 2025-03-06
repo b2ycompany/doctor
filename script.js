@@ -18,6 +18,19 @@ loginBtn?.addEventListener("click", () => {
     const password = document.getElementById("login-password").value;
 
     auth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+            const userId = userCredential.user.uid;
+            db.collection("users").doc(userId).get()
+                .then(doc => {
+                    if (doc.exists) {
+                        const tipo = doc.data().tipo;
+                        window.location.href = tipo + ".html";
+                    } else {
+                        alert("Usuário não encontrado!");
+                    }
+                })
+                .catch(error => console.error("Erro ao buscar usuário:", error));
+        })
         .catch(error => alert(error.message));
 });
 
@@ -27,10 +40,11 @@ registerBtn?.addEventListener("click", () => {
     const tipoUsuario = document.getElementById("tipo-usuario").value;
 
     auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
+        .then(userCredential => {
             const userId = userCredential.user.uid;
             db.collection("users").doc(userId).set({ tipo: tipoUsuario })
-                .then(() => window.location.href = tipoUsuario + ".html");
+                .then(() => window.location.href = tipoUsuario + ".html")
+                .catch(error => console.error("Erro ao salvar usuário:", error));
         })
         .catch(error => alert(error.message));
 });
