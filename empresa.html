@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro de Empresa - Sistema Plantão Médico</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="empresa.js"></script>
+</head>
+
+<body>
+
+<h2>Cadastro de Empresa</h2>
+<form id="empresa-form">
+    <input type="text" id="empresa-nome" placeholder="Nome da Empresa" required>
+    <input type="text" id="empresa-cnpj" placeholder="CNPJ" required>
+    <input type="text" id="empresa-especialidade" placeholder="Especialidade Procurada">
+    <input type="number" id="empresa-valor-hora" placeholder="Valor por Hora" required>
+
+    <label>Tipo de Atendimento:</label>
+    <select id="empresa-tipo-atendimento">
+        <option value="ambulatorio">Ambulatório</option>
+        <option value="pronto-socorro">Pronto-Socorro</option>
+        <option value="urgencia">Urgência</option>
+        <option value="emergencia">Emergência</option>
+    </select>
+
+    <button type="button" onclick="salvarEmpresa()">Salvar</button>
+</form>
+
+<a href="dashboard.html">Voltar ao Dashboard</a>
+
+</body>
+</html>
