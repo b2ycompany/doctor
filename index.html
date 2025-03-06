@@ -11,7 +11,6 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-storage-compat.js"></script>
 
 <!-- Script personalizado -->
 <script defer src="script.js"></script>
@@ -19,26 +18,22 @@
 
 <body>
 
-<div class="container">
-    <div class="card">
-        <h2 id="login-title">Login</h2>
-        <input type="email" id="login-email" placeholder="Email" required>
-        <input type="password" id="login-password" placeholder="Senha" required>
-        <button id="login-btn" class="btn">Entrar</button>
-        <a href="#" onclick="toggleAuth()">Criar Conta</a>
+<div class="auth-container">
+    <h2 id="login-title">Login</h2>
+    <input type="email" id="login-email" placeholder="Email" required>
+    <input type="password" id="login-password" placeholder="Senha" required>
+    <button id="login-btn">Entrar</button>
+    <a href="#" onclick="toggleAuth()">Criar Conta</a>
 
-        <div class="divider"></div>
-
-        <h2 id="register-title" class="hidden">Cadastro</h2>
-        <select id="tipo-usuario" class="hidden">
-            <option value="profissional">Profissional</option>
-            <option value="empresa">Empresa</option>
-        </select>
-        <input type="email" id="register-email" placeholder="Email" class="hidden" required>
-        <input type="password" id="register-password" placeholder="Senha" class="hidden" required>
-        <button id="register-btn" class="btn hidden">Cadastrar</button>
-        <a href="#" onclick="toggleAuth()" class="hidden" id="login-link">Já tenho uma conta</a>
-    </div>
+    <h2 id="register-title" class="hidden">Cadastro</h2>
+    <select id="register-tipo" class="hidden">
+        <option value="medico">Profissional</option>
+        <option value="empresa">Empresa</option>
+    </select>
+    <input type="email" id="register-email" placeholder="Email" class="hidden" required>
+    <input type="password" id="register-password" placeholder="Senha" class="hidden" required>
+    <button id="register-btn" class="hidden">Cadastrar</button>
+    <a href="#" onclick="toggleAuth()" class="hidden" id="login-link">Já tenho uma conta</a>
 </div>
 
 </body>
