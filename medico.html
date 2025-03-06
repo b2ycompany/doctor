@@ -4,10 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cadastro Médico - Sistema Plantão Médico</title>
+<title>Cadastro de Profissional - Sistema Plantão Médico</title>
 <link rel="stylesheet" href="style.css">
 
-<!-- Firebase SDKs (Compatível com a sintaxe antiga) -->
+<!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore-compat.js"></script>
@@ -19,26 +19,32 @@
 
 <body>
 
-<h2>Cadastro Médico</h2>
-<form>
-    <label>Especialidade:</label>
-    <input type="text" id="especialidade" placeholder="Ex: Cardiologia" required><br>
+<h2>Cadastro de Profissional</h2>
+<form id="profissional-form">
+    <input type="text" id="prof-name" placeholder="Nome Completo" required>
+    <input type="text" id="prof-crm" placeholder="CRM" required>
+    <input type="text" id="prof-endereco" placeholder="Endereço" required>
+    <input type="text" id="prof-especialidade" placeholder="Especialidade" oninput="sugerirEspecialidade()">
+    <div id="sugestoes-especialidade"></div>
+    <input type="number" id="prof-valor-hora" placeholder="Valor por Hora" required>
 
-    <label>Valor Hora:</label>
-    <input type="number" id="valor-hora" placeholder="Ex: 200" required><br>
+    <label>Dias Disponíveis:</label>
+    <input type="date" id="prof-dias">
+    <label>Horários Disponíveis:</label>
+    <input type="time" id="prof-horarios">
 
-    <label>Regiões que aceita trabalhar:</label>
-    <input type="text" id="regioes" placeholder="Ex: São Paulo, Rio de Janeiro" required><br>
+    <label>Tipo de Atendimento:</label>
+    <select id="prof-tipo-atendimento">
+        <option value="ambulatorio">Ambulatório</option>
+        <option value="pronto-socorro">Pronto-Socorro</option>
+        <option value="urgencia">Urgência</option>
+        <option value="emergencia">Emergência</option>
+    </select>
 
-    <label>Dias disponíveis:</label>
-    <input type="text" id="dias" placeholder="Ex: Segunda, Quarta, Sexta" required><br>
-
-    <label>Horário disponível:</label>
-    <input type="text" id="horario" placeholder="Ex: 08:00 - 18:00" required><br>
-
-    <button type="button" id="salvar-btn">Salvar</button>
-    <button type="button" id="voltar-btn">Voltar</button>
+    <button type="button" onclick="salvarProfissional()">Salvar</button>
 </form>
+
+<a href="dashboard.html">Voltar ao Dashboard</a>
 
 </body>
 </html>
