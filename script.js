@@ -13,24 +13,34 @@ const db = firebase.firestore();
 const loginBtn = document.getElementById("login-btn");
 const registerBtn = document.getElementById("register-btn");
 
+// 🔄 Só tenta pegar dados do usuário se ele estiver logado
+auth.onAuthStateChanged(user => {
+    if (user) {
+        const userId = user.uid;
+        db.collection("users").doc(userId).get()
+            .then(doc => {
+                if (doc.exists) {
+                    const userData = doc.data();
+                    if (userData && userData.tipo) {
+                        window.location.href = userData.tipo + ".html";
+                    } else {
+                        console.log("Tipo de usuário não encontrado!");
+                    }
+                } else {
+                    console.log("Usuário não encontrado!");
+                }
+            })
+            .catch(error => console.error("Erro ao buscar usuário:", error));
+    } else {
+        console.log("Nenhum usuário logado.");
+    }
+});
+
 loginBtn?.addEventListener("click", () => {
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
 
     auth.signInWithEmailAndPassword(email, password)
-        .then(userCredential => {
-            const userId = userCredential.user.uid;
-            db.collection("users").doc(userId).get()
-                .then(doc => {
-                    if (doc.exists) {
-                        const tipo = doc.data().tipo;
-                        window.location.href = tipo + ".html";
-                    } else {
-                        alert("Usuário não encontrado!");
-                    }
-                })
-                .catch(error => console.error("Erro ao buscar usuário:", error));
-        })
         .catch(error => alert(error.message));
 });
 
