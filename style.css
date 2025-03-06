@@ -1,35 +1,86 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f3f3;
-    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
 }
 
-form {
-    margin: 20px auto;
-    padding: 20px;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.card {
     background-color: #fff;
-    border: 1px solid #ddd;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-width: 400px;
-    border-radius: 8px;
-}
-
-input, select, button {
-    display: block;
     width: 90%;
-    margin: 10px auto;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
 }
 
-button {
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+input, select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
+.btn {
     background-color: #28a745;
     color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
 }
 
-button:hover {
+.btn:hover {
     background-color: #218838;
+}
+
+a {
+    color: #28a745;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #1e7e34;
+}
+
+.hidden {
+    display: none;
+}
+
+.divider {
+    margin: 20px 0;
+    height: 1px;
+    background-color: #ddd;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
