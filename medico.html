@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro Profissional - Sistema Plantão Médico</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script defer src="assets/js/medico.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>Cadastro de Profissional</h2>
+  <form id="medico-form">
+    <input type="text" id="nome" placeholder="Nome" required>
+    <input type="text" id="crm" placeholder="CRM" required>
+    <input type="text" id="especialidade" placeholder="Especialidade" required>
+    <input type="text" id="regiao" placeholder="Região de Atendimento" required>
+    <input type="number" id="valor-hora" placeholder="Valor Hora (R$)" required>
+    <select id="tipo-atendimento" required>
+      <option value="">Tipo de Atendimento</option>
+      <option value="Ambulatório">Ambulatório</option>
+      <option value="Pronto-socorro">Pronto-socorro</option>
+      <option value="Urgência e Emergência">Urgência e Emergência</option>
+    </select>
+    <input type="file" id="curriculo" accept=".pdf" required>
+    <input type="file" id="diploma" accept=".pdf" required>
+    <button type="submit">Cadastrar</button>
+  </form>
+</div>
+</body>
+</html>
