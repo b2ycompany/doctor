@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Plantão Médico - Login</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script defer src="assets/js/auth.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>Bem-vindo ao Sistema Plantão Médico</h2>
+  <div class="login-form">
+    <h3>Login</h3>
+    <input type="email" id="login-email" placeholder="Email" required>
+    <input type="password" id="login-password" placeholder="Senha" required>
+    <button onclick="login()">Entrar</button>
+  </div>
+  <div class="register-form">
+    <h3>Registrar</h3>
+    <select id="user-type">
+      <option value="medico">Sou Profissional</option>
+      <option value="empresa">Sou Empresa</option>
+    </select>
+    <input type="email" id="register-email" placeholder="Email" required>
+    <input type="password" id="register-password" placeholder="Senha" required>
+    <button onclick="register()">Registrar</button>
+  </div>
+</div>
+</body>
+</html>
